@@ -6,8 +6,15 @@ $root = Split-Path -Parent $PSScriptRoot
 $dest = Join-Path $env:LOCALAPPDATA "HolmFeierabend"
 $publish = Join-Path $root "out\holm-feierabend"
 
+$dotnet = (Get-Command dotnet -ErrorAction SilentlyContinue)?.Source
+if (-not $dotnet) {
+    $candidate = Join-Path $env:LOCALAPPDATA "dotnet\dotnet.exe"
+    if (Test-Path $candidate) { $dotnet = $candidate }
+}
+if (-not $dotnet) { throw "Das .NET 10 SDK fehlt. Lege es ab oder setze dotnet auf den PATH." }
+
 Write-Host "Baue Holm mit Gleitzeit …"
-dotnet publish (Join-Path $root "Holm.App\Holm.App.csproj") -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o $publish
+& $dotnet publish (Join-Path $root "Holm.App\Holm.App.csproj") -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o $publish
 if ($LASTEXITCODE -ne 0) { throw "Der Build ist fehlgeschlagen." }
 
 New-Item -ItemType Directory -Force -Path $dest | Out-Null
