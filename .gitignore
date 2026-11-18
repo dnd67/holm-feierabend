@@ -1,0 +1,23 @@
+# Build output
+bin/
+obj/
+.holm-upstream/
+
+# GitHub Actions need a token with the workflow scope. They stay on disk and are not in this remote yet.
+.github/workflows/
+artifacts/
+publish/
+out/
+Holm-*-test-build.*.exe
+share/
+snaps/
+TestResults/
+*_wpftmp.csproj
+
+# IDE
+.vs/
+.vscode/
+*.user
+
+# The GIPHY API key built into local release builds (WinNotch.csproj)
+giphy.key
