@@ -19,7 +19,9 @@ Im Repository liegen keine Passwörter und keine geheimen Schlüssel. Die Client
 
 ## Start
 
-Windows 10 (2004 oder neuer) oder Windows 11, x64. Zum Entwickeln das .NET 10 SDK:
+Windows 10 (2004 oder neuer) oder Windows 11, x64. `Holm.exe` im Repository ist die fertige Fassung 1.15.3, eine einzelne Datei ohne .NET-Installation. Sie darf in einen beschreibbaren Ordner kopiert werden. Einstellungen, dann **Updates**: eine neuere Veröffentlichung dieses Repositories ersetzt genau diese Datei und startet neu. Eine Entwicklungsfassung aus `dotnet run` kann das nicht.
+
+Zum Entwickeln das .NET 10 SDK:
 
 ```powershell
 dotnet run --project Holm.App
